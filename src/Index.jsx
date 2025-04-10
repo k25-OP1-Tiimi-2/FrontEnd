@@ -15,11 +15,7 @@ function App() {
     <div>
       
       <p>{message}</p>
-      <Link to="/asiakkaat">Asiakkaat</Link>
-      <br></br>
-      <Link to="/asunnot">Asunnot</Link>
-      <br></br>
-      <Link to="/vuokrasopimukset">Vuokrasopimukset</Link>
+      
     </div>
   );
 }
