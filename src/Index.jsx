@@ -5,7 +5,7 @@ function Index() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/message")
+    fetch("http://localhost:8080/rest/message")
       .then((response) => response.text())
       .then((data) => setMessage(data))
       .catch((error) => console.error("Virhe haettaessa dataa:", error));
