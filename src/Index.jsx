@@ -1,45 +1,49 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 
 const Index = () => {
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/rest/products")
-      .then((response) => response.json()) 
-      .then((data) => setProducts(data)) 
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
       .catch((error) => console.error("Virhe haettaessa dataa:", error));
   }, []);
 
   return (
-    <div>
-      <h1>Tervetuloa eläinkaupan sivuille!</h1>
-      <h2>Tuotteet</h2>
-      <table >
-        <thead>
-          <tr>
-            <th>Tuote</th>
-            <th>Valmistaja</th>
-            <th>Hinta</th>
-            <th>Tyyppi</th>
-            <th>Väri</th>
-            <th>Koko</th>
-          </tr>
-        </thead>
-        <tbody>
+    <Container>
+      <Typography variant="h3" component="h1" gutterBottom>
+        Tervetuloa eläinkaupan sivuille!
+      </Typography>
+      <Typography variant="h4" component="h2" gutterBottom>
+        Tuotteet
+      </Typography>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Tuote</TableCell>
+            <TableCell>Valmistaja</TableCell>
+            <TableCell>Hinta</TableCell>
+            <TableCell>Tyyppi</TableCell>
+            <TableCell>Väri</TableCell>
+            <TableCell>Koko</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.title}</td>
-              <td>{product.manufacturer.name}</td>
-              <td>{product.price} €</td>
-              <td>{product.productType.name}</td>
-              <td>{product.color}</td>
-              <td>{product.size}</td>
-            </tr>
+            <TableRow key={product.id}>
+              <TableCell>{product.title}</TableCell>
+              <TableCell>{product.manufacturer.name}</TableCell>
+              <TableCell>{product.price} €</TableCell>
+              <TableCell>{product.productType.name}</TableCell>
+              <TableCell>{product.color}</TableCell>
+              <TableCell>{product.size}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </Container>
   );
 };
 
