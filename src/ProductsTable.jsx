@@ -1,16 +1,7 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 
-const Index = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/rest/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Virhe haettaessa dataa:", error));
-  }, []);
-
+const ProductsTable = ({ products }) => {
   return (
     <Container>
       <Typography variant="h3" component="h1" gutterBottom>
@@ -47,4 +38,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ProductsTable;
